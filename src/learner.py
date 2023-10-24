@@ -1,10 +1,10 @@
+import time
 import pandas as pd
 from catboost import CatBoostRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 
-# Загрузите данные из CSV-файла
-data = pd.read_csv('train_data.csv')
+model = CatBoostRegressor(iterations=1000, depth=6, loss_function='Poisson', verbose=200)
 
 # Определите целевую переменную и признаки
 target = 'количество_преступлений_в_сфере_информационной_безопасности'
@@ -27,24 +27,40 @@ features = [
     'количество_инвестиций_в_сферу_кибербезопасности'
 ]
 
-X = data[features]
-y = data[target]
 
-# Разделите данные на обучающий и тестовый наборы
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-model = CatBoostRegressor(iterations=1000, depth=6, loss_function='Poisson', verbose=200)
 
-# Обучите модель CatBoost с пуассоновской регрессией
-model.fit(X_train, y_train)
+def learn(X_train, y_train):
+    # Обучите модель CatBoost с пуассоновской регрессией
+    print("Start learning...")
+    model.fit(X_train, y_train)
+    print("End learning")
 
-# Сделайте предсказания на тестовом наборе
-y_pred = model.predict(X_test)
-print(y_pred)
 
-# Оцените качество модели
-mse = mean_squared_error(y_test, y_pred)
-print(f"Mean Squared Error: {mse}")
 
-print("Save the model")
-model.save_model('model.cbm')
-print("Model saved")
+def save():
+    print("Save the model...")
+    if model: model.save_model(f'model_{time.time()}.cbm')
+    print("Model saved")
+
+
+
+if __name__ == '__main__':
+    data = pd.read_csv('train_data.csv')
+
+    X = data[features]
+    y = data[target]
+
+    # Разделите данные на обучающий и тестовый наборы
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+    learn(X_train, y_train)
+
+    # Сделайте предсказания на тестовом наборе
+    y_pred = model.predict(X_test)
+    print(y_pred)
+
+    # Оцените качество модели
+    mse = mean_squared_error(y_test, y_pred)
+    print(f"Mean Squared Error: {mse}")
+
+    if input("Save? (y/n)") == 'y': save()

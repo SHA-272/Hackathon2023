@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Prediction App</title>
+    <title>ПКПСИБ</title>
 </head>
 <body>
-    <h1>Data Prediction App</h1>
+    <h1>Предсказание количества преступлений с сфере информационной безопасности</h1>
     <form id="prediction-form" method="post" action="/predict">
-        <input type="text" name="data" placeholder="Enter data to predict">
-        <button type="submit">Predict</button>
+        <input type="text" name="data" placeholder="Введите данные">
+        <button type="submit">Предсказание</button>
     </form>
     <div id="prediction-result"></div>
     <script>
@@ -23,7 +23,7 @@
             })
             .then(response => response.json())
             .then(data => {
-                document.getElementById("prediction-result").innerHTML = 'Prediction: ' + data.prediction;
+                document.getElementById("prediction-result").innerHTML = 'Результат: ' + data.prediction;
             });
         });
     </script>
