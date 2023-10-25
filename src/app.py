@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import predictor
 
-app = Flask(__name)
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -61,22 +61,22 @@ def make_prediction():
 
     # Perform prediction using the input data
     prediction = predictor.predict(
-        male_population=male_population,
-        female_population=female_population,
-        number_of_unemployed_population=number_of_unemployed_population,
-        crime_solving_percentage=crime_solving_percentage,
-        number_of_law_enforcement_personnel=number_of_law_enforcement_personnel,
-        population_mortality_rate=population_mortality_rate,
-        number_of_prior_crimes_in_the_field_of=number_of_prior_crimes_in_the_field_of,
-        average_labor_payment=average_labor_payment,
-        inflation_rate=inflation_rate,
-        standard_of_living=standard_of_living,
-        population_digitization_level=population_digitization_level,
-        number_of_companies_in_the_information_technology_sector=number_of_companies_in_the_information_technology_sector,
-        number_of_population_educated_in_IT=number_of_population_educated_in_IT,
-        number_of_known_hacking_communities=number_of_known_hacking_communities,
-        number_of_cybersecurity_incidents=number_of_cybersecurity_incidents,
-        number_of_investments_in_cybersecurity_sector=number_of_investments_in_cybersecurity_sector
+        male_population,
+        female_population,
+        number_of_unemployed_population,
+        crime_solving_percentage,
+        number_of_law_enforcement_personnel,
+        population_mortality_rate,
+        number_of_prior_crimes_in_the_field_of,
+        average_labor_payment,
+        inflation_rate,
+        standard_of_living,
+        population_digitization_level,
+        number_of_companies_in_the_information_technology_sector,
+        number_of_population_educated_in_IT,
+        number_of_known_hacking_communities,
+        number_of_cybersecurity_incidents,
+        number_of_investments_in_cybersecurity_sector
     )
 
     return jsonify({'prediction': prediction})
