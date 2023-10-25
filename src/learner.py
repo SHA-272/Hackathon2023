@@ -7,24 +7,24 @@ from sklearn.metrics import mean_squared_error
 model = CatBoostRegressor(iterations=1000, depth=6, loss_function='Poisson', verbose=200)
 
 # Определите целевую переменную и признаки
-target = 'количество_преступлений_в_сфере_информационной_безопасности'
+target = 'number_of_crimes_in_the_field_of_information_security'
 features = [
-    'численность_мужского_населения',
-    'численность_женского_населения',
-    'количество_безработного_населения',
-    'процент_раскрываемости_преступлений',
-    'численность_сотрудников_правоохранительных_органов',
-    'смертность_населения',
-    'количество_ранее_совершенных_преступлений_в_сфере',
-    'средний_размер_оплаты_труда',
-    'уровень_инфляции',
-    'уровень_жизни_населения',
-    'уровень_цифровизации_населения',
-    'количество_компаний_в_сфере_информационных_технологий',
-    'количество_населения_получившего_образование_в_ИТ',
-    'количество_известных_хакерских_сообществ',
-    'количество_инцидентов_кибербезопасности',
-    'количество_инвестиций_в_сферу_кибербезопасности'
+    'male_population',
+    'female_population',
+    'number_of_unemployed_population',
+    'crime_solving_percentage',
+    'number_of_law_enforcement_personnel',
+    'population_mortality_rate',
+    'number_of_prior_crimes_in_the_field_of',
+    'average_labor_payment',
+    'inflation_rate',
+    'standard_of_living',
+    'population_digitization_level',
+    'number_of_companies_in_the_information_technology_sector',
+    'number_of_population_educated_in_IT',
+    'number_of_known_hacking_communities',
+    'number_of_cybersecurity_incidents',
+    'number_of_investments_in_cybersecurity_sector'
 ]
 
 
