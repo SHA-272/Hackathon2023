@@ -6,12 +6,11 @@
     <link href="../static/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <div id="prediction-result"></div>
     <div class="container">
       <div class="blob"></div>
       <div class="card">
         <h1>
-          Предсказание количества преступлений в сфере информационной
+          Прогнозирование количества преступлений в сфере информационной
           безопасности
         </h1>
         <form action="/predict" id="prediction-form" method="post">
@@ -143,8 +142,12 @@
             type="text"
             value="100000"
           /><br />
-          <button type="button">Предсказание</button>
+          <button type="button">Прогнозирование</button>
         </form>
+        <div class="resultback">
+          <div>Результат прогнозирования:</div>
+          <div class="result" id="prediction-result"></div>
+        </div>
       </div> 
       <script src="../static/post.js"></script>
     </div>

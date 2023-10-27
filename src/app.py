@@ -16,7 +16,7 @@ def make_prediction():
     input_data = pd.DataFrame(data, index=[0])
     print(input_data)
     # Вызовите функцию predict с использованием DataFrame
-    prediction = predictor.predict(input_data).tostring()
+    prediction = round(predictor.predict(input_data)[0])
     print(prediction)
     return jsonify({'prediction': prediction})
 
