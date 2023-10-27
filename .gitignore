@@ -18,3 +18,4 @@ venv.bak/
 
 .vscode
 info.txt
+catboost_info

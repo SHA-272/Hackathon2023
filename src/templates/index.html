@@ -1,112 +1,152 @@
 <!DOCTYPE html>
+
 <html>
-<head>
+  <head>
     <title>ПКПСИБ</title>
-</head>
-<body>
-    <h1>Предсказание количества преступлений в сфере информационной безопасности</h1>
-    <form id="prediction-form" method="post" action="/predict">
-        <label for="male_population">Численность мужского населения:</label>
-        <input type="text" id="male_population" name="male_population" placeholder="Введите численность мужского населения" value="50000"><br>
-
-        <label for="female_population">Численность женского населения:</label>
-        <input type="text" id="female_population" name="female_population" placeholder="Введите численность женского населения" value="55000"><br>
-
-        <label for="number_of_unemployed_population">Количество безработного населения:</label>
-        <input type="text" id="number_of_unemployed_population" name="number_of_unemployed_population" placeholder="Введите количество безработного населения" value="7500"><br>
-
-        <label for="crime_solving_percentage">Процент разгаданных преступлений:</label>
-        <input type="text" id="crime_solving_percentage" name="crime_solving_percentage" placeholder="Введите процент разгаданных преступлений" value="80"><br>
-
-        <label for="number_of_law_enforcement_personnel">Число сотрудников правоохранительных органов:</label>
-        <input type="text" id="number_of_law_enforcement_personnel" name="number_of_law_enforcement_personnel" placeholder="Введите число сотрудников правоохранительных органов" value="2000"><br>
-
-        <label for="population_mortality_rate">Уровень смертности населения:</label>
-        <input type="text" id="population_mortality_rate" name="population_mortality_rate" placeholder="Введите уровень смертности населения" value="0.5"><br>
-
-        <label for="number_of_prior_crimes_in_the_field_of">Число предыдущих преступлений в сфере:</label>
-        <input type="text" id="number_of_prior_crimes_in_the_field_of" name="number_of_prior_crimes_in_the_field_of" placeholder="Введите число предыдущих преступлений в сфере" value="100"><br>
-
-        <label for="average_labor_payment">Средняя заработная плата:</label>
-        <input type="text" id="average_labor_payment" name="average_labor_payment" placeholder="Введите среднюю заработную плату" value="50000"><br>
-
-        <label for="inflation_rate">Уровень инфляции:</label>
-        <input type="text" id="inflation_rate" name="inflation_rate" placeholder="Введите уровень инфляции" value="3.5"><br>
-
-        <label for="standard_of_living">Уровень жизни:</label>
-        <input type="text" id="standard_of_living" name="standard_of_living" placeholder="Введите уровень жизни" value="7.5"><br>
-
-        <label for="population_digitization_level">Уровень цифровизации населения:</label>
-        <input type="text" id="population_digitization_level" name="population_digitization_level" placeholder="Введите уровень цифровизации населения" value="80"><br>
-
-        <label for="number_of_companies_in_the_information_technology_sector">Число компаний в секторе информационных технологий:</label>
-        <input type="text" id="number_of_companies_in_the_information_technology_sector" name="number_of_companies_in_the_information_technology_sector" placeholder="Введите число компаний в секторе информационных технологий" value="50"><br>
-
-        <label for="number_of_population_educated_in_IT">Число образованного населения в IT:</label>
-        <input type="text" id="number_of_population_educated_in_IT" name="number_of_population_educated_in_IT" placeholder="Введите число образованного населения в IT" value="5000"><br>
-
-        <label for="number_of_known_hacking_communities">Число известных хакерских сообществ:</label>
-        <input type="text" id="number_of_known_hacking_communities" name="number_of_known_hacking_communities" placeholder="Введите число известных хакерских сообществ" value="10"><br>
-
-        <label for="number_of_cybersecurity_incidents">Число инцидентов в области кибербезопасности:</label>
-        <input type="text" id="number_of_cybersecurity_incidents" name="number_of_cybersecurity_incidents" placeholder="Введите число инцидентов в области кибербезопасности" value="25"><br>
-
-        <label for="number_of_investments_in_cybersecurity_sector">Число инвестиций в сектор кибербезопасности:</label>
-        <input type="text" id="number_of_investments_in_cybersecurity_sector" name="number_of_investments_in_cybersecurity_sector" placeholder="Введите число инвестиций в сектор кибербезопасности" value="100000"><br>
-
-        <button type="submit">Предсказание</button>
-    </form>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
     <div id="prediction-result"></div>
-    <script>
-        document.getElementById("prediction-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            var male_population = document.querySelector('input[name="male_population"]').value;
-            var female_population = document.querySelector('input[name="female_population"]').value;
-            var number_of_unemployed_population = document.querySelector('input[name="number_of_unemployed_population"]').value;
-            var crime_solving_percentage = document.querySelector('input[name="crime_solving_percentage"]').value;
-            var number_of_law_enforcement_personnel = document.querySelector('input[name="number_of_law_enforcement_personnel"]').value;
-            var population_mortality_rate = document.querySelector('input[name="population_mortality_rate"]').value;
-            var number_of_prior_crimes_in_the_field_of = document.querySelector('input[name="number_of_prior_crimes_in_the_field_of"]').value;
-            var average_labor_payment = document.querySelector('input[name="average_labor_payment"]').value;
-            var inflation_rate = document.querySelector('input[name="inflation_rate"]').value;
-            var standard_of_living = document.querySelector('input[name="standard_of_living"]').value;
-            var population_digitization_level = document.querySelector('input[name="population_digitization_level"]').value;
-            var number_of_companies_in_the_information_technology_sector = document.querySelector('input[name="number_of_companies_in_the_information_technology_sector"]').value;
-            var number_of_population_educated_in_IT = document.querySelector('input[name="number_of_population_educated_in_IT"]').value;
-            var number_of_known_hacking_communities = document.querySelector('input[name="number_of_known_hacking_communities"]').value;
-            var number_of_cybersecurity_incidents = document.querySelector('input[name="number_of_cybersecurity_incidents"]').value;
-            var number_of_investments_in_cybersecurity_sector = document.querySelector('input[name="number_of_investments_in_cybersecurity_sector"]').value;
-
-            var data = new URLSearchParams({
-                male_population: male_population,
-                female_population: female_population,
-                number_of_unemployed_population: number_of_unemployed_population,
-                crime_solving_percentage: crime_solving_percentage,
-                number_of_law_enforcement_personnel: number_of_law_enforcement_personnel,
-                population_mortality_rate: population_mortality_rate,
-                number_of_prior_crimes_in_the_field_of: number_of_prior_crimes_in_the_field_of,
-                average_labor_payment: average_labor_payment,
-                inflation_rate: inflation_rate,
-                standard_of_living: standard_of_living,
-                population_digitization_level: population_digitization_level,
-                number_of_companies_in_the_information_technology_sector: number_of_companies_in_the_information_technology_sector,
-                number_of_population_educated_in_IT: number_of_population_educated_in_IT,
-                number_of_known_hacking_communities: number_of_known_hacking_communities,
-                number_of_cybersecurity_incidents: number_of_cybersecurity_incidents,
-                number_of_investments_in_cybersecurity_sector: number_of_investments_in_cybersecurity_sector
-            });
-            fetch('/predict', {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("prediction-result").innerHTML = 'Результат: ' + data.prediction;
-            });
-        });
-    </script>
-</body>
+    <div class="container">
+      <div class="blob"></div>
+      <div class="card">
+        <h1>
+          Предсказание количества преступлений в сфере информационной
+          безопасности
+        </h1>
+        <form action="/predict" id="prediction-form" method="post">
+          <label for="male_population">Численность мужского населения:</label>
+          <input
+            id="male_population"
+            name="male_population"
+            placeholder="Введите численность мужского населения"
+            type="text"
+            value="50000"
+          /><br />
+          <label for="female_population">Численность женского населения:</label>
+          <input
+            id="female_population"
+            name="female_population"
+            placeholder="Введите численность женского населения"
+            type="text"
+            value="55000"
+          /><br />
+          <label for="number_of_unemployed_population"
+            >Количество безработного населения:</label
+          >
+          <input
+            id="number_of_unemployed_population"
+            name="number_of_unemployed_population"
+            placeholder="Введите количество безработного населения"
+            type="text"
+            value="7500"
+          /><br />
+          <label for="population_mortality_rate"
+            >Уровень смертности населения:</label
+          >
+          <input
+            id="population_mortality_rate"
+            name="population_mortality_rate"
+            placeholder="Введите уровень смертности населения"
+            type="text"
+            value="0.5"
+          /><br />
+          <label for="average_labor_payment">Средняя заработная плата:</label>
+          <input
+            id="average_labor_payment"
+            name="average_labor_payment"
+            placeholder="Введите среднюю заработную плату"
+            type="text"
+            value="50000"
+          /><br />
+          <label for="crime_IT_rate"
+            >Процент разгаданных преступлений в IT:</label
+          >
+          <input
+            id="crime_IT_rate"
+            name="crime_IT_rate"
+            placeholder="Введите процент разгаданных преступлений в IT"
+            type="text"
+            value="80"
+          /><br />
+          <label for="users_attack">Количество атак пользователей:</label>
+          <input
+            id="users_attack"
+            name="users_attack"
+            placeholder="Введите количество атак пользователей"
+            type="text"
+            value="2000"
+          /><br />
+          <label for="inflation_rate">Уровень инфляции:</label>
+          <input
+            id="inflation_rate"
+            name="inflation_rate"
+            placeholder="Введите уровень инфляции"
+            type="text"
+            value="3.5"
+          /><br />
+          <label for="standard_of_living">Уровень жизни:</label>
+          <input
+            id="standard_of_living"
+            name="standard_of_living"
+            placeholder="Введите уровень жизни"
+            type="text"
+            value="7.5"
+          /><br />
+          <label for="population_digitization_level"
+            >Уровень цифровизации населения:</label
+          >
+          <input
+            id="population_digitization_level"
+            name="population_digitization_level"
+            placeholder="Введите уровень цифровизации населения"
+            type="text"
+            value="80"
+          /><br />
+          <label for="number_of_companies_in_the_information_technology_sector"
+            >Число компаний в секторе информационных технологий:</label
+          >
+          <input
+            id="number_of_companies_in_the_information_technology_sector"
+            name="number_of_companies_in_the_information_technology_sector"
+            placeholder="Введите число компаний в секторе информационных технологий"
+            type="text"
+            value="50"
+          /><br />
+          <label for="number_of_population_educated_in_IT"
+            >Число образованного населения в IT:</label
+          >
+          <input
+            id="number_of_population_educated_in_IT"
+            name="number_of_population_educated_in_IT"
+            placeholder="Введите число образованного населения в IT"
+            type="text"
+            value="5000"
+          /><br />
+          <label for="number_of_known_hacking_communities"
+            >Число известных хакерских сообществ:</label
+          >
+          <input
+            id="number_of_known_hacking_communities"
+            name="number_of_known_hacking_communities"
+            placeholder="Введите число известных хакерских сообществ"
+            type="text"
+            value="10"
+          /><br />
+          <label for="number_of_investments_in_cybersecurity_sector"
+            >Число инвестиций в сектор кибербезопасности:</label
+          >
+          <input
+            id="number_of_investments_in_cybersecurity_sector"
+            name="number_of_investments_in_cybersecurity_sector"
+            placeholder="Введите число инвестиций в сектор кибербезопасности"
+            type="text"
+            value="100000"
+          /><br />
+          <button type="button">Предсказание</button>
+        </form>
+      </div> 
+      <script src="../static/post.js"></script>
+    </div>
+  </body>
 </html>
