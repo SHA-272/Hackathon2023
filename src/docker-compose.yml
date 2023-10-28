@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  team_profile:
+    build: .
+    volumes:
+      - ./static:/static
+      - ./templates:/templates
