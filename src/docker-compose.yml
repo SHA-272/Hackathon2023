@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  team_profile:
+  hackathon2023:
     build: .
-    volumes:
-      - ./static:/static
-      - ./templates:/templates
+    container_name: hackathon2023
+    ports:
+      - 5000:5000

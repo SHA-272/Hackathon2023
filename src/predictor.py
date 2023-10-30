@@ -1,5 +1,4 @@
 from catboost import CatBoostRegressor
-import glob, os
 
 model = CatBoostRegressor()
 model.load_model('./model.cbm')
